@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sasta Tweet
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-4">Saste aur acche Tweets...</h1>
+
+<a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create tweet</a>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for tweet in tweets %}
+        <div class="col">
+            <div class="card">
+                {% load static %}
+                {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet photo">
+                {% else %}
+                <img src="{% static 'default.png' %}" class="card-img-top" alt="Default photo">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ tweet.user.username }}</h5>
+                    <p class="card-text">{{ tweet.text }}</p>
+                    {% if tweet.user == user %}
+                    <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
