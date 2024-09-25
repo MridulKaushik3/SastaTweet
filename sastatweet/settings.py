@@ -61,10 +61,15 @@ WSGI_APPLICATION = 'sastatweet.wsgi.application'
 # Database configuration
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_-nh_G4tnyaBoqRnVjJu',
+        'HOST': 'pg-1023fa39-sastatweet.l.aivencloud.com',
+        'PORT': '13458',
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
