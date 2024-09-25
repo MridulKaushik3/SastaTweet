@@ -26,5 +26,12 @@
       "src": "/(.*)",
       "dest": "sastatweet/wsgi.py"
     }
-  ]
+  ],
+  "env": {
+    "DB_NAME": "defaultdb",
+    "DB_USER": "avnadmin",
+    "DB_PASSWORD": "AVNS_-nh_G4tnyaBoqRnVjJu",
+    "DB_HOST": "pg-1023fa39-sastatweet.l.aivencloud.com",
+    "DB_PORT": "13458"
+  }
 }
