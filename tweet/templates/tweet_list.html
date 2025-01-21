@@ -14,11 +14,10 @@ Sasta Tweet
         {% for tweet in tweets %}
         <div class="col">
             <div class="card">
-                {% load static %}
                 {% if tweet.photo %}
-                <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet photo">
+                <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet photo" style="max-height: 200px; object-fit: cover;">
                 {% else %}
-                <img src="{% static 'default.png' %}" class="card-img-top" alt="Default photo">
+                <img src="https://via.placeholder.com/150?text=No+Image" class="card-img-top" alt="Default photo" style="max-height: 200px; object-fit: cover;">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ tweet.user.username }}</h5>

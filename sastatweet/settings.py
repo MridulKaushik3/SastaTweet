@@ -1,8 +1,5 @@
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,9 +8,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'your-secret-key-here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost', '127.0.0.1']
+
+ALLOWED_HOSTS = ['sastatweet.onrender.com']
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -23,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tweet',
+    'tweet',  # Your custom app
     'cloudinary',
     'cloudinary_storage',
 ]
@@ -58,16 +57,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sastatweet.wsgi.application'
 
-# Database configuration
+# Database configuration (using SQLite for local development)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Tweet',
+#         'USER': 'postgres',
+#         'PASSWORD': '8287394310@Mk',
+#         'HOST': 'localhost',  # Use cloud database host if deploying
+#         'PORT': '5432',       # Default PostgreSQL port
+#     }
+# }
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
-        'USER': 'avnadmin',
-        'PASSWORD': 'AVNS_-nh_G4tnyaBoqRnVjJu',
-        'HOST': 'pg-1023fa39-sastatweet.l.aivencloud.com',
-        'PORT': '13458',
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 
@@ -93,28 +97,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+import os
 
-# Media files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Cloudinary settings
-cloudinary.config(
-    cloud_name='dwzxs4qqv',
-    api_key='643188557251438',
-    api_secret='nDCQ9dRiRxhf9tz0BJtk5ugMgAI'
-)
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dwzxs4qqv',
-    'API_KEY': '643188557251438',
-    'API_SECRET': 'nDCQ9dRiRxhf9tz0BJtk5ugMgAI',
-}
 
 # Authentication settings
 LOGIN_URL = '/accounts/login'
@@ -126,3 +116,19 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Import os for accessing environment variables
+import os
+
+# Cloudinary settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dwzxs4qqv',
+    'API_KEY': '449859849267615',
+    'API_SECRET': 'p8VDs7tq0jQq9UeEVmUTmAw0rvA',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Ensure media URLs are served from Cloudinary
+MEDIA_URL = '/media/'
