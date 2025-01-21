@@ -5,7 +5,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'your-secret-key-here'
+SECRET_KEY = 'vb!&8_s8#nltqb6h30fr6h#k$=^*t4^cm29pp1)y33&$mm=lek'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -58,21 +58,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sastatweet.wsgi.application'
 
 # Database configuration (using SQLite for local development)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Tweet',
-#         'USER': 'postgres',
-#         'PASSWORD': '8287394310@Mk',
-#         'HOST': 'localhost',  # Use cloud database host if deploying
-#         'PORT': '5432',       # Default PostgreSQL port
-#     }
-# }
-import dj_database_url
-
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Tweet',
+        'USER': 'postgres',
+        'PASSWORD': '8287394310@Mk',
+        'HOST': 'localhost',  # Use cloud database host if deploying
+        'PORT': '5432',       # Default PostgreSQL port
+    }
 }
+# import dj_database_url
+
+# DATABASES = {
+#     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+# }
 
 
 # Password validation
